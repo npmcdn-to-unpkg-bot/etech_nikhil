@@ -1,0 +1,13 @@
+import { Injectable } from '@angular/core';
+
+import { Detail } from '../model/variable';
+import { LISTING } from './data';
+
+@Injectable()
+export class TodoService
+{
+  todofunc()
+  {
+    return Promise.resolve(LISTING);
+  }
+}
