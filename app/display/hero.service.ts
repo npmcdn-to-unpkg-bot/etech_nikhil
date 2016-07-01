@@ -13,6 +13,11 @@ export class HeroService {
     return this.getHeroes()
                .then(heroes => heroes.filter(hero => hero.id === id)[0]);
   }
+
+  markTodo(complete: any){
+         
+         return this.getHeroes().then(heroes => heroes.filter(hero => hero.complete===complete)[0]); 
+     }
 }
 
 
