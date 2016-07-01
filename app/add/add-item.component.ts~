@@ -10,14 +10,16 @@ import * as _ from 'lodash';
 export class AddItemComponent implements OnInit {
     ngOnInit() {
     }
-    @Input() _task: string;
-    item:Hero;
+    task: string;
+    item:VARIABLE;
     constructor(private _addService: AddItemService) {
     }
-    onSave(_task: string) {
-        this._addService.setItem(this._task).then(
-        _item => this._item = _item
+    onSave(task: string) {
+        this._addService.setItem(this.task).then(
+        item => this.item = item
         );
+           window.history.back();
+    
     } 
      onBack() {
         window.history.back();
