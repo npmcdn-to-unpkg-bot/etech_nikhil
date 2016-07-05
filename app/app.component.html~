@@ -1,4 +1,0 @@
-          <ul>
-            <li *ngFor="let list of listitem" (click)="onClick(list)">{{list.text}}</li>
-         </ul>
-         <my-list-detail [list]="selectedList"></my-list-detail>
