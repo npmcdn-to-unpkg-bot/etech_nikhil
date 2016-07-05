@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import { Component, OnInit, OnChanges, Input } from '@angular/core';
+=======
+import { Component, OnInit, OnChanges } from '@angular/core';
+>>>>>>> d20cce6c95ed3b713cec74550c02fd4b3e676253
 import { Router } from '@angular/router-deprecated';
 
 import { VARIABLE } from '../variable';
@@ -10,10 +14,16 @@ import _ from 'lodash';
   styleUrls:  ['app/display/heroes.component.css']
 })
 export class HeroesComponent implements OnInit, OnChanges{
+<<<<<<< HEAD
   @Input() heroes: VARIABLE[];
   selectedHero: VARIABLE;
   remaining: VARIABLE[];
   completed:VARIABLE[];
+=======
+  heroes: VARIABLE[];
+  selectedHero: VARIABLE;
+  test : Boolean = false;
+>>>>>>> d20cce6c95ed3b713cec74550c02fd4b3e676253
   constructor(
     private _router: Router,
     private _heroService: HeroService) { }
@@ -34,6 +44,7 @@ export class HeroesComponent implements OnInit, OnChanges{
   }
   markTodo($event: any, hero: VARIABLE) {
  
+<<<<<<< HEAD
  
              this._heroService.markTodo(hero);
          }
@@ -41,6 +52,19 @@ export class HeroesComponent implements OnInit, OnChanges{
          this.remaining = _.filter(this.heroes, { 'complete': false });
          this.completed = _.filter(this.heroes, { 'complete': true });
       }
+=======
+         if ($event == true) {
+            // console.log("completed");
+ 
+             this._heroService.markTodo(hero);
+             return $event;
+         }
+         else {
+             //console.log("not completed");
+         }
+ 
+     }
+>>>>>>> d20cce6c95ed3b713cec74550c02fd4b3e676253
 
 }
 
