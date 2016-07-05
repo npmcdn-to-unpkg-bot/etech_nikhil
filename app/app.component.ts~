@@ -38,7 +38,7 @@ import { HeroService } from './display/hero.service';
   {
     path: '/display/heroes',
     name: 'Heroes',
-    component: HeroesComponent,
+    component: HeroesComponent
     useAsDefault: true
   }
 ])

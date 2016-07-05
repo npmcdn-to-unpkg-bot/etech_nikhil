@@ -1,14 +1,17 @@
 <label style="font-size: 18px;">Statistics:</label>
 {{done(heroes)}} 
-<button type="button">
+<button type="button" (filterChange)="updateFilter($event)"  (click)="updateFilter(0)">
+     All <span>{{remaining.length+completed.length}}</span>
+ </button>
+<button type="button" (filterChange)="updateFilter($event)" (click)="updateFilter(1)">
      Todo <span>{{remaining.length}}</span>
  </button>
  
- <button type="button">
+ <button type="button" (filterChange)="updateFilter($event)" (click)="updateFilter(2)">
      Completed <span>{{completed.length}}</span>
  </button> 
 <ul class="heroes">
-  <li *ngFor="let hero of heroes"
+  <li *ngFor="let hero of heroes" [class.hidden]="canShow(hero)"
     [class.selected]="hero === selectedHero"
     (click)="onSelect(hero)">
     <input type="checkbox" (ngModelChange)="markTodo($event,hero)" [(ngModel)]="hero.complete" >
