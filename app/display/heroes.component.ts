@@ -1,22 +1,26 @@
-import { Component, OnInit, OnChanges } from '@angular/core';
+import { Component, OnInit, OnChanges, Input,Output, EventEmitter  } from '@angular/core';
 import { Router } from '@angular/router-deprecated';
 
 import { VARIABLE } from '../variable';
 import { HeroService } from './hero.service';
-
+import _ from 'lodash';
 @Component({
   selector: 'my-heroes',
   templateUrl: 'app/display/heroes.component.html',
   styleUrls:  ['app/display/heroes.component.css']
 })
 export class HeroesComponent implements OnInit, OnChanges{
-  heroes: VARIABLE[];
+  @Input('init') heroes: VARIABLE[] = [];
   selectedHero: VARIABLE;
-  test : Boolean = false;
-  constructor(
-    private _router: Router,
+  remaining: VARIABLE[];
+  completed:VARIABLE[];
+  filterType = 0;
+  @Output('filterChange') filters = new EventEmitter();
+    constructor(private _router: Router,
     private _heroService: HeroService) { }
-
+    ngOnChanges(){
+        
+    }
   getHeroes() {
     this._heroService.getHeroes().then(heroes => this.heroes = heroes);
   }
@@ -33,16 +37,30 @@ export class HeroesComponent implements OnInit, OnChanges{
   }
   markTodo($event: any, hero: VARIABLE) {
  
-         if ($event == true) {
-            // console.log("completed");
  
              this._heroService.markTodo(hero);
-             return $event;
          }
-         else {
-             //console.log("not completed");
+        done(heroes) {
+         this.remaining = _.filter(this.heroes, { 'complete': false });
+         this.completed = _.filter(this.heroes, { 'complete': true });
+      }
+      canShow(hero: VARIABLE) {
+         if (this.filterType === 0) {
+             return false;
+         } else if (this.filterType === 1) {
+             if (hero.complete) {
+                 return true;
+             }
+         } else if (this.filterType === 2) {
+             if (!hero.complete) {
+                 return true;
+             }
          }
- 
+         return false;
+     }
+     updateFilter(filtervar) {
+         this.filterType = filtervar
+         this.filters.emit(filtervar);
      }
 
 }
