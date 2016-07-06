@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RouteParams } from '@angular/router-deprecated';
 
-import { VARIABLE } from '../VARIABLE';
+import { VARIABLE } from './variable';
 import { HeroService } from './display/hero.service';
 
 @Component({
@@ -19,7 +19,7 @@ export class HeroDetailComponent implements OnInit {
   ngOnInit() {
     let id = +this.routeParams.get('id');
     this.heroService.getHero(id)
-      .then(hero => this.hero = hero);
+      .subscribe(hero => this.hero = hero);
   }
 
   goBack() {
