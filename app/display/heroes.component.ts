@@ -3,6 +3,8 @@ import { Router } from '@angular/router-deprecated';
 
 import { VARIABLE } from '../variable';
 import { HeroService } from './hero.service';
+import 'rxjs/add/operator/map'
+import 'rxjs/add/operator/catch'
 import _ from 'lodash';
 @Component({
   selector: 'my-heroes',
@@ -21,12 +23,14 @@ export class HeroesComponent implements OnInit, OnChanges{
     ngOnChanges(){
         
     }
-  getHeroes() {
-    this._heroService.getHeroes().then(heroes => this.heroes = heroes);
-  }
 
   ngOnInit() {
-    this.getHeroes();
+        var self = this;
+        this._heroService.getHeroes().subscribe((todos) => {
+            self.heroes = todos;
+        },(error) => {
+             console.log(error);
+        });
   }
 
   onSelect(hero: VARIABLE) { this.selectedHero = hero; }
