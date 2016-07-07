@@ -1,5 +1,6 @@
 <label style="font-size: 18px;">Statistics:</label>
 {{done(heroes)}} 
+<button type="button" (click)="sort()">Sort</button>
 <button type="button" (filterChange)="updateFilter($event)"  (click)="updateFilter(0)">
      All <span>{{remaining.length+completed.length}}</span>
  </button>

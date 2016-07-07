@@ -66,6 +66,11 @@ export class HeroesComponent implements OnInit, OnChanges{
          this.filterType = filtervar
          this.filters.emit(filtervar);
      }
+sort() {
+             this.heroes = _.sortBy(this.heroes, function(heroes) {
+                 return heroes.name;
+             })
+     }
 
 }
 
