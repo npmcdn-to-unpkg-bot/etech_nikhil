@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { DATA } from '../data';
 import { VARIABLE } from '../variable';
 import * as  _ from 'lodash';
 

@@ -3,17 +3,23 @@
         <h1 class="text-primary">todo</h1>
     </div>
 </div>
+<form [ngFormModel]="form" (submit)="onSave(task)">
 <div class="row">
     <div class="col-md-12">
             <label>Todo task</label>
-            <input [(ngModel)]="task" placeholder="My Task"/>
+            <input ngControl="task" placeholder="My Task" required="required"/>
     </div>
+</div>
+<div *ngIf="task.dirty && !task.valid">
+    <p class="error" *ngIf="task.errors.required">Todo is required.</p>
+    <p class="error" *ngIf="task.errors.isString">Todo can't be a number</p>
 </div>
 <div class="row">
     <div class="col-md-12">
-        <button class="text-primary btn-sm btn-success" (click)="onSave(_task)">SAVE</button>
+        <button type="submit" [disabled]="!form.valid">SAVE</button>
     </div>
 </div>
 
 
 <button class="text-primary btn-sm btn-success" (click)="onBack()">BACK</button>
+</form>
